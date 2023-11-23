@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:00:55 by nbiron            #+#    #+#             */
-/*   Updated: 2023/11/23 16:00:12 by nbiron           ###   ########.fr       */
+/*   Updated: 2023/11/23 16:54:37 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,43 @@ int	read_map(t_complete *map)
 	}
 	return (1);
 }
+// char *addc(char *ligne, char chara)
+// {
+// 	char *new;
+// 	int	i;
+
+// 	i = 0;
+// 	new = malloc(sizeof(char) * (ft_strlen(ligne) + 2));
+// 	while (ligne[i])
+// 	{
+// 		new[i] = ligne[i];
+// 		i++;
+// 	}
+// 	new[i] = chara;
+// 	new[i + 1] = '\n';
+// 	return (new);
+// }
+
+// int	read_map(t_complete *map)
+// {
+// 	char 	*ligne;
+// 	char	**tab;
+// 	int		i;
+// 	int		y;
+
+// 	ligne = get_next_line(map->fd);
+// 	y = 0;
+// 	while (ligne)
+// 	{
+// 		i = 0;
+// 		while (ligne[i])
+// 		{
+// 			if (ligne[i] != '\n')
+// 				tab[y] = addc(tab[y] ,ligne[i]);
+// 		}
+// 		free(ligne);
+// 		ligne = get_next_line(map->fd);
+// 		y++;
+// 	}
+// 	return (1);
+// }
