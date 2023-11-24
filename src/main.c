@@ -29,6 +29,20 @@ void	init(t_complete *map, char *av)
 	map->fd = open(av, O_RDONLY);
 }
 
+int	on_destroy(t_game *game)
+{
+	ft_free_split(game->map.data);
+	ft_free_split(game->map.buff);
+	destroy_texs(*game);
+	free_mobs(game->mobs);
+	mlx_destroy_image(game->mlx, game->img);
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	exit(0);
+	return (0);
+}
+
 int main(int ac, char **av)
 {
 	t_complete map;
