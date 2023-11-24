@@ -16,23 +16,23 @@ static void	put_img(char chara, t_complete map)
 {
 	if (chara == '1')
 	{
-		mlx_put_image_to_window(map.mlxptr, map.winptr, map.wall, map.x * 16 , map.y * 16);
+		mlx_put_image_to_window(map.mlxptr, map.winptr, map.wall, map.x * 64 , map.y * 64);
 	}
 	if (chara == '0')
 	{
-		mlx_put_image_to_window(map.mlxptr, map.winptr, map.floor, map.x * 16 , map.y * 16);
+		mlx_put_image_to_window(map.mlxptr, map.winptr, map.floor, map.x * 64 , map.y * 64);
 	}
 	if (chara == 'C')
 	{
-		mlx_put_image_to_window(map.mlxptr, map.winptr, map.collectable, map.x * 16 , map.y * 16);
+		mlx_put_image_to_window(map.mlxptr, map.winptr, map.collectable, map.x * 64 , map.y * 64);
 	}
 	if (chara == 'P')
 	{
-		mlx_put_image_to_window(map.mlxptr, map.winptr, map.hero, map.x * 16 , map.y * 16);
+		mlx_put_image_to_window(map.mlxptr, map.winptr, map.hero, map.x * 64 , map.y * 64);
 	}
 	if (chara == 'E')
 	{
-		mlx_put_image_to_window(map.mlxptr, map.winptr, map.exit, map.x * 16 , map.y * 16);
+		mlx_put_image_to_window(map.mlxptr, map.winptr, map.exit, map.x * 64 , map.y * 64);
 	}
 }
 
