@@ -19,9 +19,9 @@ void	init(t_complete *map, char *av)
 
 	map->mlxptr = mlx_init();
 	map->winptr = mlx_new_window(map->mlxptr, 500, 500, "marge");
-	map->wall = mlx_xpm_file_to_image(map->mlxptr, "textures/wall_1.xpm", &width, &height);
-	map->floor = mlx_xpm_file_to_image(map->mlxptr, "textures/floor_1.xpm", &width, &height);
-	map->collectable = mlx_xpm_file_to_image(map->mlxptr, "textures/colectible.xpm", &width, &height);
+	map->wall = mlx_xpm_file_to_image(map->mlxptr, "textures/wall.xpm", &width, &height);
+	map->floor = mlx_xpm_file_to_image(map->mlxptr, "textures/floor.xpm", &width, &height);
+	map->collectable = mlx_xpm_file_to_image(map->mlxptr, "textures/collectible.xpm", &width, &height);
 	map->hero = mlx_xpm_file_to_image(map->mlxptr, "textures/hero.xpm", &width, &height);
 	map->exit = mlx_xpm_file_to_image(map->mlxptr, "textures/exit.xpm", &width, &height);
 	map->x = 0;
