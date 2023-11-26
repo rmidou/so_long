@@ -58,6 +58,26 @@ int	read_map(t_complete *map)
 	}
 	return (1);
 }
+
+int	controls(int command, t_complete *map)
+{
+	int	works;
+
+	//if (command == 53)
+	//	exit_point(map);
+	//if (command == 13)
+	//	works = keyboard_w_s(game, command);
+	//if (command == 1)
+	//	works = keyboard_w_s(game, command);
+	//if (command == 0)
+	//	works = keyboard_a_d(game, command);
+	//if (command == 2)
+	//	works = keyboard_a_d(game, command);
+	//if (works)
+	//	adding_in_graphics(game);
+	return (1);
+}
+
 // char *addc(char *ligne, char chara)
 // {
 // 	char *new;
