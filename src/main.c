@@ -51,6 +51,7 @@ int main(int ac, char **av)
 	init(&map, av[1]);
 	read_map(&map);
 	mlx_loop(map.mlxptr);
+	mlx_key_hook(game.winpointer, controls, &map);
 	mlx_hook(game->win, DestroyNotify, StructureNotifyMask, &on_destroy, game);
 	mlx_destroy_window(map.mlxptr, map.winptr);
 	mlx_destroy_display(map.mlxptr);
