@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:21:35 by nbiron            #+#    #+#             */
-/*   Updated: 2023/11/27 15:33:28 by nbiron           ###   ########.fr       */
+/*   Updated: 2023/11/27 17:11:17 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "../minilibx/mlx.h"
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <string.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
@@ -33,6 +32,7 @@ typedef struct t_start
 	int		y_map;
 	int		x;
 	int		y;
+	int		e;
 	int		counter;
 	int		collectables;
 
@@ -53,5 +53,6 @@ int		controls(int command, t_complete *map);
 int		on_destroy(t_complete *map);
 int		move(int key, t_complete *map);
 void	print_map(t_complete *map);
+void	init_hero(t_complete *map);
 
 #endif
