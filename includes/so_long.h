@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:21:35 by nbiron            #+#    #+#             */
-/*   Updated: 2023/11/23 15:57:27 by nbiron           ###   ########.fr       */
+/*   Updated: 2023/11/27 15:33:28 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ typedef struct t_start
 	int		heightmap;
 	int		widthmap;
 	int		playercount;
-	int		columncount;
-	int		exitcount;
+	int		x_map;
+	int		y_map;
 	int		x;
 	int		y;
 	int		counter;
@@ -48,6 +48,10 @@ typedef struct t_start
 
 }	t_complete;
 
-int		read_map(t_complete *map);
+int		read_map(t_complete *map, char *av);
+int		controls(int command, t_complete *map);
+int		on_destroy(t_complete *map);
+int		move(int key, t_complete *map);
+void	print_map(t_complete *map);
 
 #endif
