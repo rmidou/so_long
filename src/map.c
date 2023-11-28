@@ -37,17 +37,17 @@ void	display_info(t_complete map)
 	char	*num1;
 	char	*num2;
 
-	num1 = ft_itoa(map.player.collected);
+	num1 = ft_itoa(map.counter);
 	num2 = ft_itoa(map.player.moves);
 	s = str_adds(NULL, "Moves: ", 7);
 	s = str_adds(s, num2, ft_strlen(num2));
-	mlx_string_put(map.mlx, map.win, 10, 10, trgb(255, 255, 255, 255), s);
+	mlx_string_put(map.mlxptr, map.winptr, 10, 10, trgb(255, 255, 255, 255), s);
 	free(s);
 	s = str_adds(NULL, "Collected: ", 12);
 	s = str_adds(s, num1, ft_strlen(num1));
 	free(num1);
 	free(num2);
-	mlx_string_put(map.mlx, map.win, 10, 20, trgb(255, 255, 255, 255), s);
+	mlx_string_put(map.mlxptr, map.winptr, 10, 20, trgb(255, 255, 255, 255), s);
 	free(s);
 }
 
