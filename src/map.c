@@ -38,7 +38,7 @@ void	display_info(t_complete map)
 	char	*num2;
 
 	num1 = ft_itoa(map.counter);
-	num2 = ft_itoa(map.player.moves);
+	num2 = ft_itoa(map.playercount);
 	s = str_adds(NULL, "Moves: ", 7);
 	s = str_adds(s, num2, ft_strlen(num2));
 	mlx_string_put(map.mlxptr, map.winptr, 10, 10, trgb(255, 255, 255, 255), s);
