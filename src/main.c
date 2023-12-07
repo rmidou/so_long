@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:39:43 by nbiron            #+#    #+#             */
-/*   Updated: 2023/11/27 17:16:42 by nbiron           ###   ########.fr       */
+/*   Updated: 2023/12/07 12:25:14 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	init(t_complete *map, char *av)
 	map->x = 0;
 	map->y = 0;
 	map->counter = 0;
+	map->playercount = 0;
 	map->collectables = 0;
 	map->e = 0;
 }

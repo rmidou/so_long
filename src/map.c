@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:00:55 by nbiron            #+#    #+#             */
-/*   Updated: 2023/11/27 17:08:20 by nbiron           ###   ########.fr       */
+/*   Updated: 2023/12/07 12:37:37 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ static void	put_img(char chara, t_complete map)
 			(map.mlxptr, map.winptr, map.exit, map.x * 64, map.y * 64);
 }
 
+int	trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
 void	display_info(t_complete map)
 {
 	char	*s;
@@ -39,12 +44,10 @@ void	display_info(t_complete map)
 
 	num1 = ft_itoa(map.counter);
 	num2 = ft_itoa(map.playercount);
-	s = str_adds(NULL, "Moves: ", 7);
-	s = str_adds(s, num2, ft_strlen(num2));
+	s = ft_strjoin("Moves: ", num2);
 	mlx_string_put(map.mlxptr, map.winptr, 10, 10, trgb(255, 255, 255, 255), s);
 	free(s);
-	s = str_adds(NULL, "Collected: ", 12);
-	s = str_adds(s, num1, ft_strlen(num1));
+	s = ft_strjoin("Collected: ", num1);
 	free(num1);
 	free(num2);
 	mlx_string_put(map.mlxptr, map.winptr, 10, 20, trgb(255, 255, 255, 255), s);
@@ -70,6 +73,7 @@ void	print_map(t_complete *map)
 		}
 		y++;
 	}
+	display_info(*map);
 	init_hero(map);
 }
 
