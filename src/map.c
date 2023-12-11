@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:00:55 by nbiron            #+#    #+#             */
-/*   Updated: 2023/12/07 12:37:37 by nbiron           ###   ########.fr       */
+/*   Updated: 2023/12/11 14:40:11 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	nb_ligne(t_complete *map, char *av)
 	char	*ligne;
 
 	ligne = get_next_line(map->fd);
-	map->widthmap = ft_strlen(ligne);
+	map->widthmap = ft_strlen(ligne) - 1;
 	i = 0;
 	while (ligne)
 	{
@@ -121,6 +121,7 @@ int	read_map(t_complete *map, char *av)
 	int		y;
 
 	y = 0;
+	map->fd = open(av, O_RDONLY);
 	nb_ligne(map, av);
 	ligne = get_next_line(map->fd);
 	map->map = malloc(sizeof(char *) * (map->heightmap + 1));
@@ -130,10 +131,9 @@ int	read_map(t_complete *map, char *av)
 		ligne = get_next_line(map->fd);
 		y++;
 	}
-	map->map[y] = (char *) '\0';
+	map->map[y] = NULL;
 	close(map->fd);
 	init_hero(map);
-	print_map(map);
 	collectibles(map);
 	return (1);
 }

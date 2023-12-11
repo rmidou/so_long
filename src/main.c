@@ -6,19 +6,20 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:39:43 by nbiron            #+#    #+#             */
-/*   Updated: 2023/12/07 12:25:14 by nbiron           ###   ########.fr       */
+/*   Updated: 2023/12/11 14:40:04 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	init(t_complete *map, char *av)
+void	init(t_complete *map)
 {
 	int	width;
 	int	height;
 
 	map->mlxptr = mlx_init();
-	map->winptr = mlx_new_window(map->mlxptr, 2000, 2000, "marge");//utiliser map->widthmap * 64
+	map->winptr = mlx_new_window(map->mlxptr, 64 * map->widthmap,
+			64 * map->heightmap, "marge");
 	map->wall = mlx_xpm_file_to_image
 		(map->mlxptr, "textures/wall.xpm", &width, &height);
 	map->floor = mlx_xpm_file_to_image
@@ -29,13 +30,6 @@ void	init(t_complete *map, char *av)
 		(map->mlxptr, "textures/hero.xpm", &width, &height);
 	map->exit = mlx_xpm_file_to_image
 		(map->mlxptr, "textures/exit.xpm", &width, &height);
-	map->fd = open(av, O_RDONLY);
-	map->x = 0;
-	map->y = 0;
-	map->counter = 0;
-	map->playercount = 0;
-	map->collectables = 0;
-	map->e = 0;
 }
 
 void	free_map(t_complete *map)
@@ -66,8 +60,9 @@ int	main(int ac, char **av)
 	t_complete	map;
 
 	(void)ac;
-	init(&map, av[1]);
+	ft_bzero(&map, sizeof(t_complete));
 	read_map(&map, av[1]);
+	init(&map);
 	print_map(&map);
 	mlx_hook(map.winptr, KeyRelease, KeyReleaseMask, &move, &map);
 	mlx_hook(map.winptr, DestroyNotify, StructureNotifyMask, &on_destroy, &map);
