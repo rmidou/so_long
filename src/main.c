@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:39:43 by nbiron            #+#    #+#             */
-/*   Updated: 2023/12/11 14:40:04 by nbiron           ###   ########.fr       */
+/*   Updated: 2023/12/12 17:00:37 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ void	free_map(t_complete *map)
 int	on_destroy(t_complete *map)
 {
 	mlx_destroy_window(map->mlxptr, map->winptr);
+	mlx_destroy_image(map->mlxptr, map->wall);
+	mlx_destroy_image(map->mlxptr, map->floor);
+	mlx_destroy_image(map->mlxptr, map->collectable);
+	mlx_destroy_image(map->mlxptr, map->hero);
+	mlx_destroy_image(map->mlxptr, map->exit);
 	mlx_destroy_display(map->mlxptr);
 	free(map->mlxptr);
 	free_map(map);

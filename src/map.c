@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:00:55 by nbiron            #+#    #+#             */
-/*   Updated: 2023/12/11 14:40:11 by nbiron           ###   ########.fr       */
+/*   Updated: 2023/12/12 16:50:23 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,12 @@ void	nb_ligne(t_complete *map, char *av)
 
 	ligne = get_next_line(map->fd);
 	map->widthmap = ft_strlen(ligne) - 1;
+	free(ligne);
 	i = 0;
 	while (ligne)
 	{
 		ligne = get_next_line(map->fd);
+		free(ligne);
 		i++;
 	}
 	close(map->fd);
