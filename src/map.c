@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:00:55 by nbiron            #+#    #+#             */
-/*   Updated: 2023/12/12 16:50:23 by nbiron           ###   ########.fr       */
+/*   Updated: 2023/12/13 13:12:57 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,4 +138,82 @@ int	read_map(t_complete *map, char *av)
 	init_hero(map);
 	collectibles(map);
 	return (1);
+}
+
+int	count_char(t_complete *map, char a)
+{
+	int	y;
+	int	i;
+	int	total;
+
+	y = 0;
+	i = 0;
+	total = 0;
+	while (map->map[y])
+	{
+		i = 0;
+		while (map->map[y][i])
+		{
+			if (map->map[y][i] == a)
+				total+= 1;
+			i++;
+		}
+		y++;
+	}
+	return (total);
+}
+
+int	count(int x, int y, t_complete *map, char a)
+{
+	int	r;
+	int	l;
+	int	u;
+	int	d;
+
+	if (x < 0 || x >= map->widthmap
+		|| y < 0 || y >= map->heightmap)
+		return (0);
+	if (map->map[y][x] == '1')
+		return (0);
+	map->map[y][x] = '1';
+	r = count(x + 1, y, map, a);
+	l = count(x - 1, y, map, a);
+	u = count(x, y - 1, map, a);
+	d = count(x, y + 1, map, a);
+	if (map->map[y][x] == a)
+		return (1 + r + l + u + d);
+	return (r + l + u + d);
+}
+
+void	exit_handler(char *msg, char *info)
+{
+	ft_putstr_fd("Error: ", 2);
+	if (info)
+	{
+		ft_putstr_fd(msg, 2);
+		ft_putstr_fd(": ", 2);
+		ft_putendl_fd(info, 2);
+	}
+	else
+		ft_putendl_fd(msg, 2);
+	exit(-1);
+}
+
+void	verif_map(t_complete *map)
+{
+	int		end;
+	int		spawn;
+
+
+	map->valid = 1;
+	if (map->widthmap < 1 || map->heightmap < 1)
+		exit_handler("Invalid map", NULL);
+	spawn = count_char(map, 'P');
+	end = count_char(map, 'E');
+	// if (map->collectables == 0 || spawn != 1 || end != 1)
+	// 	map->valid = 0;
+	// if (map->collectables != count(map->x, map->y, map, 'C'))
+	// 	map->valid = 0;
+	// if (end != count(map->x, map->y, map, 'E'))
+	// 	map->valid = 0;
 }
