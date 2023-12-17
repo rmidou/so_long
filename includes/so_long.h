@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:21:35 by nbiron            #+#    #+#             */
-/*   Updated: 2023/12/13 13:10:53 by nbiron           ###   ########.fr       */
+/*   Updated: 2023/12/17 19:12:04 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ typedef struct t_start
 	int		e;
 	int		counter;
 	int		collectables;
+	
 	int		valid;
 
 	char	**map;
+	char	**buf;
 
 	void	*floor;
 	void	*wall;

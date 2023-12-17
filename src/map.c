@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:00:55 by nbiron            #+#    #+#             */
-/*   Updated: 2023/12/13 13:12:57 by nbiron           ###   ########.fr       */
+/*   Updated: 2023/12/17 19:58:33 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,13 +127,16 @@ int	read_map(t_complete *map, char *av)
 	nb_ligne(map, av);
 	ligne = get_next_line(map->fd);
 	map->map = malloc(sizeof(char *) * (map->heightmap + 1));
+	map->buf = malloc(sizeof(char *) * (map->heightmap + 1));
 	while (ligne)
 	{
 		map->map[y] = ligne;
+		map->buf[y] = ligne;
 		ligne = get_next_line(map->fd);
 		y++;
 	}
 	map->map[y] = NULL;
+	map->buf[y] = NULL;
 	close(map->fd);
 	init_hero(map);
 	collectibles(map);
@@ -173,14 +176,14 @@ int	count(int x, int y, t_complete *map, char a)
 	if (x < 0 || x >= map->widthmap
 		|| y < 0 || y >= map->heightmap)
 		return (0);
-	if (map->map[y][x] == '1')
+	if (map->buf[y][x] == '1')
 		return (0);
-	map->map[y][x] = '1';
+	map->buf[y][x] = '1';
 	r = count(x + 1, y, map, a);
 	l = count(x - 1, y, map, a);
 	u = count(x, y - 1, map, a);
 	d = count(x, y + 1, map, a);
-	if (map->map[y][x] == a)
+	if (map->buf[y][x] == a)
 		return (1 + r + l + u + d);
 	return (r + l + u + d);
 }
@@ -199,6 +202,26 @@ void	exit_handler(char *msg, char *info)
 	exit(-1);
 }
 
+void	reset_buff(t_complete map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < map.heightmap)
+	{
+		j = 0;
+		while (j < map.widthmap)
+		{
+			map.buf[i][j] = map.map[i][j];
+			j++;
+		}
+		i++;
+	}
+}
+
+#include <stdio.h>
+
 void	verif_map(t_complete *map)
 {
 	int		end;
@@ -210,10 +233,18 @@ void	verif_map(t_complete *map)
 		exit_handler("Invalid map", NULL);
 	spawn = count_char(map, 'P');
 	end = count_char(map, 'E');
-	// if (map->collectables == 0 || spawn != 1 || end != 1)
-	// 	map->valid = 0;
-	// if (map->collectables != count(map->x, map->y, map, 'C'))
-	// 	map->valid = 0;
+	if (map->collectables == 0 || spawn != 1 || end != 1)
+		map->valid = 0;
+	if (map->collectables == 0 || spawn != 1 || end != 1)
+		printf("zob\n");
+	reset_buff(*map);
+	if (map->collectables != count(map->x, map->y, map, 'C'))
+	{
+		map->valid = 0;
+		ft_printf("j");
+		printf("zob2 \n");
+	}
+	// reset_buff(*map);
 	// if (end != count(map->x, map->y, map, 'E'))
 	// 	map->valid = 0;
 }
