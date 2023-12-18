@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:47:32 by nbiron            #+#    #+#             */
-/*   Updated: 2023/12/17 19:40:08 by nbiron           ###   ########.fr       */
+/*   Updated: 2023/12/18 16:23:40 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int	move(int key, t_complete *map)
 	return (1);
 }
 
-#include <stdio.h>
 void	init_hero(t_complete *map)
 {
 	int	y;
@@ -100,7 +99,6 @@ void	init_hero(t_complete *map)
 			{
 				map->x = x;
 				map->y = y;
-				printf("%d - %d\n", x, y);
 				return ;
 			}
 			x++;

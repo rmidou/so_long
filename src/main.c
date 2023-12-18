@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:39:43 by nbiron            #+#    #+#             */
-/*   Updated: 2023/12/17 19:20:32 by nbiron           ###   ########.fr       */
+/*   Updated: 2023/12/18 16:20:40 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ int	main(int ac, char **av)
 		on_destroy(&map);
 		return (0);
 	}
-	// ft_bzero(&map, sizeof(t_complete));
-	// read_map(&map, av[1]);
 	init(&map);
 	print_map(&map);
 	mlx_hook(map.winptr, KeyRelease, KeyReleaseMask, &move, &map);

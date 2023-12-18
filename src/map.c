@@ -6,11 +6,31 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:00:55 by nbiron            #+#    #+#             */
-/*   Updated: 2023/12/17 19:58:33 by nbiron           ###   ########.fr       */
+/*   Updated: 2023/12/18 16:39:16 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+// void	print_mapp(t_complete *map)
+// {
+// 	int	y;
+// 	int	i;
+
+// 	y = 0;
+// 	i = 0;
+// 	while (map->buf[y])
+// 	{
+// 		i = 0;
+// 		while(map->buf[y][i])
+// 		{
+// 			ft_printf("%c", map->buf[y][i]);
+// 			i++;
+// 		}
+// 		y++;
+// 	}
+// 	ft_printf("C : %d || sur : %d", map->collectables, map->counter);
+// }
 
 static void	put_img(char chara, t_complete map)
 {
@@ -103,7 +123,8 @@ void	nb_ligne(t_complete *map, char *av)
 	char	*ligne;
 
 	ligne = get_next_line(map->fd);
-	map->widthmap = ft_strlen(ligne) - 1;
+	if (ligne)
+		map->widthmap = ft_strlen(ligne) - 1;
 	free(ligne);
 	i = 0;
 	while (ligne)
@@ -131,7 +152,7 @@ int	read_map(t_complete *map, char *av)
 	while (ligne)
 	{
 		map->map[y] = ligne;
-		map->buf[y] = ligne;
+		map->buf[y] = ft_strdup(ligne);
 		ligne = get_next_line(map->fd);
 		y++;
 	}
@@ -183,7 +204,7 @@ int	count(int x, int y, t_complete *map, char a)
 	l = count(x - 1, y, map, a);
 	u = count(x, y - 1, map, a);
 	d = count(x, y + 1, map, a);
-	if (map->buf[y][x] == a)
+	if (map->map[y][x] == a)
 		return (1 + r + l + u + d);
 	return (r + l + u + d);
 }
@@ -220,7 +241,31 @@ void	reset_buff(t_complete map)
 	}
 }
 
-#include <stdio.h>
+int	verif_border(t_complete map)
+{
+	int	i;
+	int	j;
+	
+	i = 0;
+	while (i < map.heightmap)
+	{
+		j = 0;
+		while (j < map.widthmap)
+		{
+			if (i == 0 && map.buf[i][j] != '1')
+				return (0);
+			if (j == 0 && map.buf[i][j] != '1')
+				return (0);
+			if (i == map.widthmap && map.buf[i][j] != '1')
+				return (0);
+			if (i == map.heightmap && map.buf[i][j] != '1')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
 
 void	verif_map(t_complete *map)
 {
@@ -229,22 +274,19 @@ void	verif_map(t_complete *map)
 
 
 	map->valid = 1;
-	if (map->widthmap < 1 || map->heightmap < 1)
+	if (map->widthmap < 4 || map->heightmap < 4)
 		exit_handler("Invalid map", NULL);
 	spawn = count_char(map, 'P');
 	end = count_char(map, 'E');
 	if (map->collectables == 0 || spawn != 1 || end != 1)
 		map->valid = 0;
-	if (map->collectables == 0 || spawn != 1 || end != 1)
-		printf("zob\n");
 	reset_buff(*map);
 	if (map->collectables != count(map->x, map->y, map, 'C'))
-	{
 		map->valid = 0;
-		ft_printf("j");
-		printf("zob2 \n");
-	}
-	// reset_buff(*map);
-	// if (end != count(map->x, map->y, map, 'E'))
-	// 	map->valid = 0;
+	reset_buff(*map);
+	if (end != count(map->x, map->y, map, 'E'))
+		map->valid = 0;
+	reset_buff(*map);
+	if (!verif_border(*map))
+		map->valid = 0;
 }
