@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:21:35 by nbiron            #+#    #+#             */
-/*   Updated: 2023/12/17 19:12:04 by nbiron           ###   ########.fr       */
+/*   Updated: 2024/01/09 15:54:55 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ void	print_map(t_complete *map);
 void	init_hero(t_complete *map);
 void	verif_map(t_complete *map);
 void	exit_handler(char *msg, char *info);
+void	free_map(t_complete *map);
 
 #endif

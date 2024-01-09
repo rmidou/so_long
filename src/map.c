@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:00:55 by nbiron            #+#    #+#             */
-/*   Updated: 2023/12/18 16:39:16 by nbiron           ###   ########.fr       */
+/*   Updated: 2024/01/09 15:55:13 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,7 +275,10 @@ void	verif_map(t_complete *map)
 
 	map->valid = 1;
 	if (map->widthmap < 4 || map->heightmap < 4)
+	{
+		free_map(map);
 		exit_handler("Invalid map", NULL);
+	}
 	spawn = count_char(map, 'P');
 	end = count_char(map, 'E');
 	if (map->collectables == 0 || spawn != 1 || end != 1)

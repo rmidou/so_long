@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:39:43 by nbiron            #+#    #+#             */
-/*   Updated: 2023/12/18 16:20:40 by nbiron           ###   ########.fr       */
+/*   Updated: 2024/01/08 14:23:35 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,13 @@ void	free_map(t_complete *map)
 		i++;
 	}
 	free(map->map);
+	i = 0;
+	while (map->buf[i])
+	{
+		free(map->buf[i]);
+		i++;
+	}
+	free(map->buf);
 }
 
 int	on_destroy(t_complete *map)
@@ -68,10 +75,11 @@ int	main(int ac, char **av)
 	ft_bzero(&map, sizeof(t_complete));
 	read_map(&map, av[1]);
 	verif_map(&map);
+	init(&map);
 	if (map.valid == 0)
 	{
-		exit_handler("Invalid map", NULL);
 		on_destroy(&map);
+		exit_handler("Invalid map", NULL);
 		return (0);
 	}
 	init(&map);
