@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:21:35 by nbiron            #+#    #+#             */
-/*   Updated: 2024/01/09 15:54:55 by nbiron           ###   ########.fr       */
+/*   Updated: 2024/01/09 19:42:11 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct t_start
 	int		e;
 	int		counter;
 	int		collectables;
-	
+
 	int		valid;
 
 	char	**map;
@@ -60,5 +60,7 @@ void	init_hero(t_complete *map);
 void	verif_map(t_complete *map);
 void	exit_handler(char *msg, char *info);
 void	free_map(t_complete *map);
+void	put_img(char chara, t_complete map);
+void	display_info(t_complete map);
 
 #endif

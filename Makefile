@@ -20,7 +20,7 @@ MLX_LIB		=	$(addprefix $(MLX_PATH), $(MLX_FILE))
 
 MLX_EX		=	$(MLX_LIB) $(MLX_FLAG)
 
-C_FILE		=	main.c  map.c  move.c  \
+C_FILE		=	main.c  map.c  move.c  print.c verif_map.c \
 
 SRC_DIR		=	./src/
 
