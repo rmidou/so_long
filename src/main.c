@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:39:43 by nbiron            #+#    #+#             */
-/*   Updated: 2024/01/09 19:35:08 by nbiron           ###   ########.fr       */
+/*   Updated: 2024/01/15 15:28:36 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,20 @@ int	on_destroy(t_complete *map)
 	return (0);
 }
 
+static int	on_destroyy(t_complete *map)
+{
+	mlx_destroy_window(map->mlxptr, map->winptr);
+	mlx_destroy_image(map->mlxptr, map->wall);
+	mlx_destroy_image(map->mlxptr, map->floor);
+	mlx_destroy_image(map->mlxptr, map->collectable);
+	mlx_destroy_image(map->mlxptr, map->hero);
+	mlx_destroy_image(map->mlxptr, map->exit);
+	mlx_destroy_display(map->mlxptr);
+	free(map->mlxptr);
+	free_map(map);
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_complete	map;
@@ -78,7 +92,7 @@ int	main(int ac, char **av)
 	init(&map);
 	if (map.valid == 0)
 	{
-		on_destroy(&map);
+		on_destroyy(&map);
 		exit_handler("Invalid map", NULL);
 		return (0);
 	}
@@ -86,8 +100,5 @@ int	main(int ac, char **av)
 	mlx_hook(map.winptr, KeyRelease, KeyReleaseMask, &move, &map);
 	mlx_hook(map.winptr, DestroyNotify, StructureNotifyMask, &on_destroy, &map);
 	mlx_loop(map.mlxptr);
-	mlx_destroy_window(map.mlxptr, map.winptr);
-	mlx_destroy_display(map.mlxptr);
-	free(map.mlxptr);
 	return (0);
 }
