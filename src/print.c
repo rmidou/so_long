@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 19:19:45 by nbiron            #+#    #+#             */
-/*   Updated: 2024/01/09 19:24:56 by nbiron           ###   ########.fr       */
+/*   Updated: 2024/03/11 13:15:33 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	display_info(t_complete map)
 	num1 = ft_itoa(map.counter);
 	num2 = ft_itoa(map.playercount);
 	s = ft_strjoin("Moves: ", num2);
+	ft_printf("%s\n", s);
 	mlx_string_put(map.mlxptr, map.winptr, 10, 10, trgb(255, 255, 255, 255), s);
 	free(s);
 	s = ft_strjoin("Collected: ", num1);
