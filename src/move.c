@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:47:32 by nbiron            #+#    #+#             */
-/*   Updated: 2024/01/15 15:24:47 by nbiron           ###   ########.fr       */
+/*   Updated: 2024/03/11 13:24:06 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	move(int key, t_complete *map)
 		ty++;
 	if (key == 'd')
 		tx++;
+	if (key == 65307)
+		on_destroy(map);
 	move_2(map, tx, ty);
 	return (1);
 }
