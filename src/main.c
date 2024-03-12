@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:39:43 by nbiron            #+#    #+#             */
-/*   Updated: 2024/03/12 15:11:53 by nbiron           ###   ########.fr       */
+/*   Updated: 2024/03/12 15:30:34 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int	main(int ac, char **av)
 		if (map.valid == 0)
 			on_destroyy(&map);
 		exit_handler("Invalid map", NULL);
-		//return (0);
 	}
 	print_map(&map);
 	mlx_hook(map.winptr, KeyRelease, KeyReleaseMask, &move, &map);

@@ -6,33 +6,11 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:47:32 by nbiron            #+#    #+#             */
-/*   Updated: 2024/03/11 13:24:06 by nbiron           ###   ########.fr       */
+/*   Updated: 2024/03/12 15:30:49 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-// #include <stdio.h>
-
-// void	print_mapp(t_complete *map)
-// {
-// 	int	y;
-// 	int	i;
-
-// 	y = 0;
-// 	i = 0;
-// 	while (map->map[y])
-// 	{
-// 		i = 0;
-// 		while(map->map[y][i])
-// 		{
-// 			printf("%c", map->map[y][i]);
-// 			i++;
-// 		}
-// 		y++;
-// 	}
-// 	printf("C : %d || sur : %d", map->collectables, map->counter);
-// }
 
 static void	move_2(t_complete *map, int x, int y)
 {
