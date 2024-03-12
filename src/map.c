@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:00:55 by nbiron            #+#    #+#             */
-/*   Updated: 2024/01/09 19:19:37 by nbiron           ###   ########.fr       */
+/*   Updated: 2024/03/12 15:02:57 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ void	nb_ligne(t_complete *map, char *av)
 		free(ligne);
 		i++;
 	}
-	close(map->fd);
+	if (map->fd != -1)
+		close(map->fd);
 	map->fd = open(av, O_RDONLY);
 	map->heightmap = i;
 }
@@ -102,6 +103,8 @@ int	read_map(t_complete *map, char *av)
 	int		y;
 
 	y = 0;
+	if (av == NULL)
+		return (0);
 	map->fd = open(av, O_RDONLY);
 	nb_ligne(map, av);
 	ligne = get_next_line(map->fd);
@@ -116,7 +119,8 @@ int	read_map(t_complete *map, char *av)
 	}
 	map->map[y] = NULL;
 	map->buf[y] = NULL;
-	close(map->fd);
+	if (map->fd != -1)
+		close(map->fd);
 	init_hero(map);
 	collectibles(map);
 	return (1);

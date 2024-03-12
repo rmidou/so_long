@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 19:15:58 by nbiron            #+#    #+#             */
-/*   Updated: 2024/01/09 19:18:38 by nbiron           ###   ########.fr       */
+/*   Updated: 2024/03/12 15:25:16 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ int	count_char(t_complete *map, char a)
 		{
 			if (map->map[y][i] == a)
 				total += 1;
+			if (map->map[y][i] != '1' && map->map[y][i] != '0'
+				&& map->map[y][i] != 'C' && map->map[y][i] != 'E'
+				&& map->map[y][i] != 'P' && map->map[y][i] != '\0'
+				&& map->map[y][i] != '\n')
+				return (-1);
 			i++;
 		}
 		y++;

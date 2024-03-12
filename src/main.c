@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:39:43 by nbiron            #+#    #+#             */
-/*   Updated: 2024/01/15 15:28:36 by nbiron           ###   ########.fr       */
+/*   Updated: 2024/03/12 15:11:53 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,20 @@ int	main(int ac, char **av)
 
 	(void)ac;
 	ft_bzero(&map, sizeof(t_complete));
-	read_map(&map, av[1]);
-	verif_map(&map);
-	init(&map);
-	if (map.valid == 0)
+	map.valid = 1;
+	if (read_map(&map, av[1]) == 0)
+		map.valid = -1;
+	if (map.valid > 0)
 	{
-		on_destroyy(&map);
+		verif_map(&map);
+		init(&map);
+	}
+	if (map.valid <= 0)
+	{
+		if (map.valid == 0)
+			on_destroyy(&map);
 		exit_handler("Invalid map", NULL);
-		return (0);
+		//return (0);
 	}
 	print_map(&map);
 	mlx_hook(map.winptr, KeyRelease, KeyReleaseMask, &move, &map);
