@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:47:32 by nbiron            #+#    #+#             */
-/*   Updated: 2024/03/12 15:30:49 by nbiron           ###   ########.fr       */
+/*   Updated: 2024/03/27 15:54:42 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void	move_2(t_complete *map, int x, int y)
 		else if (map->map[y][x] == 'E')
 			map->e = 1;
 		map->map[y][x] = 'P';
-		map->playercount++;
 	}
 	print_map(map);
 }
@@ -57,6 +56,9 @@ int	move(int key, t_complete *map)
 		ty++;
 	if (key == 'd')
 		tx++;
+	if (key == 'd' || key == 's'
+		|| key == 'a' || key == 'w')
+		ft_printf("Moves : %i\n", ++(map->playercount));
 	if (key == 65307)
 		on_destroy(map);
 	move_2(map, tx, ty);
