@@ -54,3 +54,16 @@ void	display_info(t_complete map)
 	mlx_string_put(map.mlxptr, map.winptr, 10, 20, trgb(255, 255, 255, 255), s);
 	free(s);
 }
+
+int	verif(char *av)
+{
+	int	i;
+
+	i = 0;
+	while(av && av[i])
+		i++
+	if (i > 3 && av[i - 1] == 'r' && av[i - 2] == 'e' &&  av[i - 3] == 'b'
+		&&  av[i - 4] == '.')
+		return (1);
+	return (0);
+}
