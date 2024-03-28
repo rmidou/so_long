@@ -6,7 +6,7 @@
 /*   By: nbiron <nbiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:39:43 by nbiron            #+#    #+#             */
-/*   Updated: 2024/03/12 15:30:34 by nbiron           ###   ########.fr       */
+/*   Updated: 2024/03/28 11:11:03 by nbiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	main(int ac, char **av)
 	(void)ac;
 	ft_bzero(&map, sizeof(t_complete));
 	map.valid = 1;
-	if (read_map(&map, av[1]) == 0 || verif(av[1) == 0)
+	if (verif(av[1]) == 0 || read_map(&map, av[1]) == 0)
 		map.valid = -1;
 	if (map.valid > 0)
 	{
