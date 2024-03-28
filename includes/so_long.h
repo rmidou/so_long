@@ -61,5 +61,6 @@ void	exit_handler(char *msg, char *info);
 void	free_map(t_complete *map);
 void	put_img(char chara, t_complete map);
 void	display_info(t_complete map);
+int		verif(char *av);
 
 #endif
